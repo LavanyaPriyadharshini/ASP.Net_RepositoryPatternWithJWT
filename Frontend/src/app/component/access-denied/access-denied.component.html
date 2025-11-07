@@ -1,0 +1,91 @@
+<div class="access-denied-container">
+  <div class="access-denied-content">
+    <!-- Lock Icon Animation -->
+    <div class="icon-container">
+      <div class="lock-circle">
+        <svg xmlns="http://www.w3.org/2000/svg" class="lock-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+        </svg>
+      </div>
+      <div class="warning-badge">
+        <svg xmlns="http://www.w3.org/2000/svg" class="warning-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+        </svg>
+      </div>
+    </div>
+
+    <!-- Error Code -->
+    <div class="error-code">403</div>
+
+    <!-- Main Message -->
+    <h1 class="error-title">Access Denied</h1>
+    <p class="error-message">
+      You don't have permission to access this resource.
+    </p>
+
+    <!-- User Info (if logged in) -->
+    @if (currentUser) {
+      <div class="user-info-card">
+        <svg xmlns="http://www.w3.org/2000/svg" class="info-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <div class="user-details">
+          <p class="user-name">Logged in as: <strong>{{ currentUser.username }}</strong></p>
+          <p class="user-role">Role: <span class="role-badge">{{ currentUser.role }}</span></p>
+          <p class="info-text">This action requires <strong>Administrator</strong> privileges.</p>
+        </div>
+      </div>
+    } @else {
+      <div class="info-card">
+        <svg xmlns="http://www.w3.org/2000/svg" class="info-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <p class="info-text">You need to be logged in with appropriate permissions to access this page.</p>
+      </div>
+    }
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+      <button class="btn btn-secondary" (click)="goBack()">
+        <svg xmlns="http://www.w3.org/2000/svg" class="btn-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        Go Back
+      </button>
+
+      <button class="btn btn-primary" (click)="goToDashboard()">
+        <svg xmlns="http://www.w3.org/2000/svg" class="btn-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+        </svg>
+        @if (currentUser) {
+          Go to Dashboard
+        } @else {
+          Go to Login
+        }
+      </button>
+
+      @if (currentUser) {
+        <button class="btn btn-outline" (click)="logout()">
+          <svg xmlns="http://www.w3.org/2000/svg" class="btn-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+          </svg>
+          Logout
+        </button>
+      }
+    </div>
+
+    <!-- Help Text -->
+    <div class="help-section">
+      <p class="help-text">
+        If you believe this is an error, please contact your system administrator.
+      </p>
+    </div>
+  </div>
+
+  <!-- Animated Background -->
+  <div class="background-animation">
+    <div class="circle circle-1"></div>
+    <div class="circle circle-2"></div>
+    <div class="circle circle-3"></div>
+  </div>
+</div>

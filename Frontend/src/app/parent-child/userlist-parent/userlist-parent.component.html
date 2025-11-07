@@ -1,0 +1,58 @@
+<div class="user-list-container">
+  <div class="header">
+    <div>
+      <h1>User Management</h1>
+      <p class="subtitle">Manage system users and their roles</p>
+    </div>
+    <button class="btn btn-primary" (click)="addNewUser()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+        <circle cx="8.5" cy="7" r="4"></circle>
+        <line x1="20" y1="8" x2="20" y2="14"></line>
+        <line x1="23" y1="11" x2="17" y2="11"></line>
+      </svg>
+      Add User
+    </button>
+  </div>
+
+  <!-- Loading State -->
+  @if (isLoading()) {
+    <div class="loading">Loading users...</div>
+  }
+
+  <!-- Error State -->
+  @if (errorMessage()) {
+    <div class="error-message">{{ errorMessage() }}</div>
+  }
+
+  <!-- User Cards -->
+  @if (!isLoading() && !errorMessage()) {
+    <div class="user-grid">
+      @for (user of users(); track user.userId) {
+        <app-user-card
+          [user]="user"
+          [isSelected]="selectedUser()?.userId === user.userId"
+          (userClicked)="onUserClicked($event)"
+          (userDeleted)="onUserDeleted($event)"
+          (userEdited)="onUserEdited($event)"
+        />
+      } @empty {
+        <div class="empty-state">
+          <p>No users found</p>
+        </div>
+      }
+    </div>
+  }
+
+  <!-- Selected User Details -->
+  @if (selectedUser()) {
+    <div class="selected-user-panel">
+      <h3>Selected User Details</h3>
+      <p><strong>ID:</strong> {{ selectedUser()!.userId }}</p>
+      <p><strong>Username:</strong> {{ selectedUser()!.username }}</p>
+      <p><strong>Email:</strong> {{ selectedUser()!.email }}</p>
+      <p><strong>Role:</strong> {{ selectedUser()!.role }}</p>
+      <p><strong>Contact:</strong> {{ selectedUser()!.contactNumber }}</p>
+    </div>
+  }
+</div>

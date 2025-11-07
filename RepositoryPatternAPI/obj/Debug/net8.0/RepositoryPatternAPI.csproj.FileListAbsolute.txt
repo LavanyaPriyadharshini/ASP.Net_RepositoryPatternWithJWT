@@ -146,3 +146,4 @@ C:\Users\lavanyap\Desktop\API Repo Project\RepositoryPatternAPI\obj\Debug\net8.0
 C:\Users\lavanyap\Desktop\API Repo Project\RepositoryPatternAPI\obj\Debug\net8.0\RepositoryPatternAPI.genruntimeconfig.cache
 C:\Users\lavanyap\Desktop\API Repo Project\RepositoryPatternAPI\obj\Debug\net8.0\ref\RepositoryPatternAPI.dll
 C:\Users\lavanyap\Desktop\API Repo Project\RepositoryPatternAPI\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\lavanyap\Desktop\API Repo Project\RepositoryPatternAPI\obj\Debug\net8.0\RepositoryPatternAPI.sourcelink.json

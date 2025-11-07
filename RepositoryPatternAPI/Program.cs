@@ -94,6 +94,24 @@ builder.Services.AddScoped(
 builder.Services.AddScoped<IStudentService, StudentService>();
 
 
+
+// Add CORS Policy - THIS IS CRITICAL
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngularApp", policy =>
+    {
+        policy.WithOrigins("http://localhost:4200") // Angular dev server
+              .AllowAnyHeader()
+              .AllowAnyMethod()
+              .AllowCredentials(); // Important for cookies/auth
+    });
+});
+
+
+
+
+
+
 // ------------------- REGISTER CREATED JWT SERVICES AND REPOSITORY HERE ---------------------------------------------------------------
 
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
@@ -115,6 +133,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+
+// USE CORS - Must be before Authorization
+app.UseCors("AllowAngularApp"); // Add this line
 
 
 app.UseAuthentication(); // 👈 Add this before Authorization
